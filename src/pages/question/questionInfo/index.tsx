@@ -1,0 +1,174 @@
+import { useState } from "react";
+import { Breadcrumb, Table, Flex, Form, Button, Space, Pagination } from "antd";
+import type { TableColumnsType, TableProps } from "antd";
+import { Header, Content } from "antd/es/layout/layout";
+
+import YearSelect from "@/components/formItem/YearSelect";
+import CompanyNameSelect from "@/components/formItem/CompanyNameSelect";
+import ClassifySelect from "@/components/formItem/ClassifySelect";
+import SurveySelect from "@/components/formItem/SurveySelect";
+import PageSelect from "@/components/formItem/PageSelect";
+import LanguageSelect from "@/components/formItem/LanguageSelect";
+import HeaderMenu from "@/components/headerMenu";
+
+import {
+  HomeOutlined,
+  ProfileOutlined,
+  SearchOutlined,
+  DownloadOutlined,
+  ExportOutlined,
+} from "@ant-design/icons";
+
+type TableRowSelection<T extends object = object> =
+  TableProps<T>["rowSelection"];
+
+interface DataType {
+  key: React.Key;
+  page: number;
+  order: number;
+  questionkey: string;
+  question: string;
+  languge: string;
+  title: string;
+  content: string;
+  view: string;
+  viewcontent: string;
+}
+
+const columns: TableColumnsType<DataType> = [
+  { title: "페이지", dataIndex: "page", width: 80, align: "center" },
+  { title: "순서", dataIndex: "order", width: 60, align: "center" },
+  { title: "문항키", dataIndex: "questionkey", width: 80, align: "center" },
+  { title: "문항유형", dataIndex: "question" },
+  { title: "언어", dataIndex: "languge", width: 100, align: "center" },
+  { title: "문항제목", dataIndex: "title" },
+  { title: "문항내용", dataIndex: "content" },
+  { title: "보기", dataIndex: "view", width: 100, align: "center" },
+  { title: "보기내용", dataIndex: "viewcontent" },
+];
+
+const dataSource = Array.from<DataType>({ length: 46 }).map<DataType>(
+  (_, i) => ({
+    key: i,
+    page: i,
+    order: i,
+    questionkey: `AA00000${i}`,
+    question: `설명 ${i}`,
+    languge: `영어 ${i}`,
+    title: `리더의 비젼 ${i}`,
+    content: `비전 달성을 위한 전략장향이 명확하게 정립되어 ${i}`,
+    view: `선택 ${i}`,
+    viewcontent: `1. 그렇다 2. 보통이다 3. 아니다 ${i}`,
+  }),
+);
+
+const QuestionInfo = () => {
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const start = () => {
+    setLoading(true);
+    // ajax request after empty completing
+    setTimeout(() => {
+      setSelectedRowKeys([]);
+      setLoading(false);
+    }, 1000);
+  };
+
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    console.log("selectedRowKeys changed: ", newSelectedRowKeys);
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+
+  const rowSelection: TableRowSelection<DataType> = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const hasSelected = selectedRowKeys.length > 0;
+
+  return (
+    <div className="ant-layout-page">
+      <Header>
+        <Breadcrumb
+          separator=">"
+          items={[
+            { href: "/", title: <HomeOutlined /> },
+            { title: "Question" },
+            { title: "Question Info" },
+          ]}
+        />
+        <HeaderMenu />
+      </Header>
+      <Content>
+        <div className="content-inner">
+          <div className="page-title">
+            <ProfileOutlined />
+            <h3>Dashboard Menu03-sub02 : Title - Question Info</h3>
+          </div>
+
+          <div className="page-content">
+            <div className="page-form-wrap">
+              {/* 검색폼 영역 */}
+              <div className="page-form-box">
+                <Form>
+                  {/* 커스텀 컴포넌트 */}
+                  <Space className="form-group">
+                    <YearSelect />
+                    <CompanyNameSelect />
+                    <ClassifySelect />
+                    <SurveySelect />
+                    <PageSelect />
+                    <LanguageSelect />
+                  </Space>
+
+                  <Button
+                    type="primary"
+                    icon={<SearchOutlined />}
+                    iconPlacement="end"
+                  >
+                    검색
+                  </Button>
+                </Form>
+              </div>
+
+              {/* ag-grid r그리드 테이블 영역 */}
+              <div className="page-grid-table">
+                <Flex
+                  style={{ marginBottom: 10 }}
+                  justify="flex-end"
+                  align="center"
+                >
+                  <Button
+                    type="primary"
+                    icon={<DownloadOutlined />}
+                    size="middle"
+                  />
+                </Flex>
+
+                <Table<DataType>
+                  rowSelection={rowSelection}
+                  columns={columns}
+                  dataSource={dataSource}
+                  pagination={{ pageSize: 10, simple: true }}
+                />
+              </div>
+              <Flex justify="flex-end" align="center">
+                <Button
+                  type="primary"
+                  icon={<ExportOutlined />}
+                  iconPlacement="end"
+                  size="large"
+                >
+                  미리보기
+                </Button>
+              </Flex>
+            </div>
+          </div>
+        </div>
+      </Content>
+    </div>
+  );
+};
+
+export default QuestionInfo;

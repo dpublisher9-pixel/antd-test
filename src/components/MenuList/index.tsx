@@ -1,53 +1,110 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-
 // icons
 import {
   AppstoreOutlined,
+  CarryOutOutlined,
+  CopyOutlined,
+  DeploymentUnitOutlined,
+  DesktopOutlined,
+  FileDoneOutlined,
   MailOutlined,
-  SettingOutlined,
+  PartitionOutlined,
+  UnorderedListOutlined,
+  UsergroupAddOutlined,
 } from '@ant-design/icons'
 
 import {  Menu } from 'antd';
 
-
-// 메뉴
+// 메뉴 리스트 - 퍼블 화면 확인용 임시
 import type { MenuProps } from 'antd';
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
   {
     key: '1',
-    icon: <MailOutlined />,
-    label: 'Navigation One ',
-    children: [
-      { key: '11', label: <Link to='/'>Dashboard</Link>,  },
-      { key: '12', label: <Link to='/notice'>Notice</Link> },
-      { key: '13', label: <Link to='/transfer'>Transfer</Link> },
-      { key: '14', label: <Link to='/result'>Result</Link> },
-    ],
+    icon: <DesktopOutlined />,
+    label: <Link to='/notice'>Notice</Link> 
   },
   {
     key: '2',
-    icon: <AppstoreOutlined />,
-    label: 'Navigation Two',
+    icon: <CopyOutlined />,
+    label: 'Edition',
     children: [
-      { key: '21', label: 'Option 1' },
-      { key: '22', label: 'Option 2' },
-      { key: '23', label: 'Option 3' },
-      { key: '24', label: 'Option 4' },
+      { key: '21', label: <Link to='/edition/surveyInfo'>Survey info</Link>  },
+      { key: '22', label: <Link to='/edition/langugeInfo'>Languge info</Link>  },
     ],
   },
   {
     key: '3',
-    icon: <SettingOutlined />,
-    label: 'Navigation Three',
+    icon: <UnorderedListOutlined />,
+    label: 'Question',
     children: [
-      { key: '31', label: 'Option 1' },
-      { key: '32', label: 'Option 2' },
-      { key: '33', label: 'Option 3' },
-      { key: '34', label: 'Option 4' },
+      { key: '31', label: <Link to='/question/commonInfo'>Common info</Link>  },
+      { key: '32', label: <Link to='/question/questionInfo'>Question info</Link>  },
+    ],
+  }, 
+  {
+    key: '4',
+    icon: <UsergroupAddOutlined />,
+    label: 'Target',
+    children: [
+      { key: '41', label: <Link to='/targetInfo'>Target info</Link>  },
+      { key: '42', label: <Link to='/organizInfo'>Organiz info</Link>  },
+      { key: '43', label: <Link to='/organizerInfo'>Organizer info</Link>  },
+    ],
+  },
+  {
+    key: '5',
+    icon: <MailOutlined />,
+    label: 'Send Mail',
+    children: [
+      { key: '51', label: <Link to='/transferInfo'>Transfer info</Link>  },
+      { key: '52', label: <Link to='/mailTemplate'>Mail template</Link>  },
+      { key: '53', label: <Link to='/mailContentTemplate'>Mail template content</Link>  },
+      { key: '54', label: <Link to='/questionTemplate'>Question template</Link>  },
+    ],
+  },
+  {
+    key: '6',
+    icon: <FileDoneOutlined />,
+    label: 'Results Report',
+    children: [
+      { key: '61', label: <Link to='/response'>Response status</Link>  },
+      { key: '62', label: <Link to='/report'>Report</Link>  },
+      { key: '63', label: <Link to='/answerResult'>Answer result</Link>  },
+      { key: '64', label: <Link to='/choiceResult'>Choice result</Link>  },
+      { key: '65', label: <Link to='/analysisResult'>Analysis result</Link>  },
+      { key: '66', label: <Link to='/pastOrganization'>Past organization</Link>  },
+      { key: '67', label: <Link to='/orgNotReports'>Organization not reports</Link>  },
+      { key: '68', label: <Link to='/comparisonTable'>Comparison table</Link>  },
+    ],
+  },
+  {
+    key: '7',
+    icon: <CarryOutOutlined />,
+    label: 'Reaults',
+    children: [
+      { key: '71', label: <Link to='/manageResults'>Manage Results</Link>  },
+      { key: '72', label: <Link to='/resultsTemplates'>Result Templates</Link>  },
+      { key: '73', label: <Link to='/resultsTemplatesContent'>Result Template Contents</Link>  },
+      { key: '74', label: <Link to='/resultsQuestions'>Results questions</Link>  },
+    ],
+  },
+  {
+    key: '8',
+    icon: <PartitionOutlined />,
+    label: <Link to='/rawdata'>Rawdata</Link>,
+  },
+  {
+    key: '9',
+    icon: <DeploymentUnitOutlined />,
+    label: 'System Manage',
+    children: [
+      { key: '91', label: <Link to='/codeGroup'>Code Group</Link>  },
+      { key: '92', label: <Link to='/CodeManage'>Code manage</Link>  },
+      { key: '93', label: <Link to='/factorManage'>Factor manage</Link>  },
     ],
   },
 ];
@@ -76,7 +133,7 @@ const getLevelKeys = (items1: LevelKeysProps[]) => {
 const levelKeys = getLevelKeys(items as LevelKeysProps[]);
 
 function MenuList() {
-  const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
+  const [stateOpenKeys, setStateOpenKeys] = useState(['1', '11']);
 
   const onOpenChange: MenuProps['onOpenChange'] = (openKeys) => {
     const currentOpenKey = openKeys.find((key) => !stateOpenKeys.includes(key));
@@ -103,10 +160,10 @@ function MenuList() {
     <>
       <Menu
         mode="inline"
-        defaultSelectedKeys={['231']}
+        defaultSelectedKeys={['1']}
         openKeys={stateOpenKeys}
         onOpenChange={onOpenChange}
-        style={{ width: 256 }}
+        // style={{ width: 256 }}
         items={items}
       />
     </>
