@@ -33,7 +33,7 @@ pages/surveyinfo/
 pages/transfer/
 formTest/
 
-page/**/*copy*
-page/**/*test*
+pages/**/*copy*
+pages/**/*test*
 components/**/*copy*
 components/**/*test*
