@@ -23,7 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# 업데이트 제외 - 퍼블 테스트
+# 업데이트 제외 - 퍼블 테스트용
 pages/home/
 pages/email/
 pages/languge/
@@ -32,3 +32,8 @@ pages/result/
 pages/surveyinfo/
 pages/transfer/
 formTest/
+
+page/**/*copy*
+page/**/*test*
+components/**/*copy*
+components/**/*test*

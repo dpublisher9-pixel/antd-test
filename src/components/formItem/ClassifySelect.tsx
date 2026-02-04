@@ -1,19 +1,9 @@
 import React from "react";
 import { Select, Space, Form } from "antd";
-import type { FormProps } from "antd";
 import { ReconciliationOutlined } from "@ant-design/icons";
 
 type FieldType = {
-  name?: string;
   classify?: string;
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
 };
 
 const ClassifySelect = () => {

@@ -1,19 +1,9 @@
 import React from "react";
 import { Select, Space, Form } from "antd";
-import type { FormProps } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 
 type FieldType = {
-  name?: string;
   year?: string;
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
 };
 
 const YearSelect = () => {
@@ -26,7 +16,7 @@ const YearSelect = () => {
         rules={[{ required: true, message: "년도 필수선택" }]}
       >
         <Select
-          defaultValue="2026"
+          // defaultValue="2026"
           placeholder="년도"
           options={[
             { label: "2021", value: "2021" },

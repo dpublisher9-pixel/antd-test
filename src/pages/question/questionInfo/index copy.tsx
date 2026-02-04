@@ -81,9 +81,20 @@ const dataSource = Array.from<DataType>({ length: 46 }).map<DataType>(
   }),
 );
 
-const QuestionInfo = () => {
+const QuestionInfo = ({ defaultValues }: { defaultValues: any }) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
+
+  // 1. Form 인스턴스 생성
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    // 2. defaultValues 데이터가 존재할 때만 실행
+    if (defaultValues && defaultValues.length > 0) {
+      // 3. setFieldsValue를 통해 폼에 데이터 주입
+      form.setFieldsValue(defaultValues[0]);
+    }
+  }, [defaultValues, form]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -101,16 +112,6 @@ const QuestionInfo = () => {
 
   const onFinishFailed: FormProps["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
-  };
-
-  // form 초기값
-  const initialValues = {
-    year: "2026", // 년도
-    companyname: "opt-1", // 회사명
-    classify: "국내 사무직", // 구분
-    // 설문
-    // 페이지
-    // 언어
   };
 
   return (
@@ -138,11 +139,11 @@ const QuestionInfo = () => {
               {/* 검색폼 영역 */}
               <div className="page-form-block">
                 <Form
-                  initialValues={initialValues}
+                  form={form}
                   onFinish={onFinish}
                   onFinishFailed={onFinishFailed}
                 >
-                  {/* 커스텀 form 컴포넌트 */}
+                  {/* 커스텀 컴포넌트 */}
                   <Space className="form-group">
                     <YearSelect />
                     <CompanyNameSelect />

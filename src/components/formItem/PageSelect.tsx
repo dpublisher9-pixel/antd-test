@@ -1,19 +1,9 @@
 import React from "react";
 import { Select, Space, Form } from "antd";
-import type { FormProps } from "antd";
 import { FileTextOutlined } from "@ant-design/icons";
 
 type FieldType = {
-  name?: string;
   page?: string;
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
 };
 
 const PageSelect = () => {
@@ -27,7 +17,7 @@ const PageSelect = () => {
       >
         <Select
           defaultValue="전체"
-          // placeholder="전체"
+          placeholder="1"
           options={[
             { label: "1", value: "1" },
             { label: "2", value: "2" },

@@ -194,21 +194,23 @@ button:focus-visible {
 /* content */
 
 /* form */
-.page-form-box {
-  border: 1px solid #93a1b3;
+.page-form-block {
   border-radius: 6px;
   padding: 20px;
 
   margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
+  background-color: #fff;
+  border: 1px solid #e9ebee;
+  /* border: 1px solid #f0f0f0; */
 }
-.page-form-box .form-group {
+.page-form-block .form-group {
   display: flex;
   flex-flow: row wrap;
   width: calc(100% - 120px);
 }
-.page-form-box .ant-form {
+.page-form-block .ant-form {
   display: flex;
   flex-flow: row wrap;
   gap: 20px;
