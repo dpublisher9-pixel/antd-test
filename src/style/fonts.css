@@ -1,0 +1,52 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "LGSmHaTL";
+  src: url("@/assets/fonts/LGSmHaTL.eot");
+  src:
+    local(☺),
+    url("@/assets/fonts/LGSmHaTL.woff2") format("woff2"),
+    url("@/assets/fonts/LGSmHaTL.woff") format("woff"),
+    url("@/assets/fonts/LGSmHaTL.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LGSmHaTR";
+  src: url("@/assets/fonts/LGSmHaTR.eot");
+  src:
+    local(☺),
+    url("@/assets/fonts/LGSmHaTR.woff2") format("woff2"),
+    url("@/assets/fonts/LGSmHaTR.woff") format("woff"),
+    url("@/assets/fonts/LGSmHaTR.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LGSmHaTSB";
+  src: url("@/assets/fonts/LGSmHaTSB.eot");
+  src:
+    local(☺),
+    url("@/assets/fonts/LGSmHaTSB.woff2") format("woff2"),
+    url("@/assets/fonts/LGSmHaTSB.woff") format("woff"),
+    url("@/assets/fonts/LGSmHaTSB.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LGSmHaTB";
+  src: url("@/assets/fonts/LGSmHaTB.eot");
+  src:
+    local(☺),
+    url("@/assets/fonts/LGSmHaTB.woff2") format("woff2"),
+    url("@/assets/fonts/LGSmHaTB.woff") format("woff"),
+    url("@/assets/fonts/LGSmHaTB.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("@/assets/fonts/Roboto-Bold.eot");
+  src:
+    local(☺),
+    url("@/assets/fonts/Roboto-Bold.woff2") format("woff2"),
+    url("@/assets/fonts/Roboto-Bold.woff") format("woff"),
+    url("@/assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+.fonts-load {
+  visibility: hidden;
+}
+.fonts-loaded .fonts-load {
+  visibility: visible;
+}
